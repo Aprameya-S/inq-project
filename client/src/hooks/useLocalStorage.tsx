@@ -1,9 +1,9 @@
+"use client"
 import { useEffect, useState } from 'react';
 
-
 function useLocalStorage(
-  key,
-  initialValue
+  key:string,
+  initialValue:string
 ){
   // State to store our value
   // Pass  initial state function to useState so logic is only executed once

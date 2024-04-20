@@ -5,7 +5,7 @@ const jwt = require('jsonwebtoken')
 
 module.exports.addAdmin = async (req, res) => {
   const data = req.body;
-  console.log(data)
+  // console.log(data)
   try {
     //hash password with 10 character salt
     data.pass = await bcrypt.hash(data.pass, 10);
@@ -88,7 +88,6 @@ module.exports.authAdminToken = (req, res, next) => {
 
 module.exports.authAdmin = (req, res) => {
   const token = req.cookies.at
-  console.log(token)
 
   if(token == null)
     return res.send(false)
