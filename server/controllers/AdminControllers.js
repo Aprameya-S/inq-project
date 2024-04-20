@@ -1,6 +1,7 @@
 const AdminModel = require('../models/AdminModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const cookies = require("cookie-parser")
 
 
 module.exports.addAdmin = async (req, res) => {
@@ -58,15 +59,12 @@ module.exports.loginAdmin = async (req, res) => {
 }
 
 module.exports.logoutAdmin = async(req,res) => {
-
   res.cookie("at",null,{
     httpOnly: true,
-    maxAge: -1,
-    path: '/api',
+    path: '/api/auth',
     sameSite: "strict",
     secure: true,
   }).json({ status: "success" });
-  
 }
 
 module.exports.authAdminToken = (req, res, next) => {

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import DashboardNav from "@/components/DashboardNav";
 import "./index.scss"
 import { Toaster } from "@/components/ui/toaster";
 import { ToastContainer } from "react-toastify";
@@ -40,9 +39,7 @@ export default function RootLayout({
                 progressClassName="toastProgress"
                 bodyClassName="toastBody"
               />
-              <DashboardNav>
-                {children}
-              </DashboardNav>
+              {children}
             </Providers>
             <Toaster />
           </body>
