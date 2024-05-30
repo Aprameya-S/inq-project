@@ -1,12 +1,36 @@
+"use client"
 import Link from 'next/link'
-import React from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 
-const Hero = () => {
+const Navbar = () => {
+
+  const [show, setShow] = useState(false);
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const controlNavbar = () => {
+    if (window.scrollY > lastScrollY || window.scrollY < window.innerHeight) { // if scroll down hide the navbar
+      setShow(false); 
+    } else { // if scroll up show the navbar
+      setShow(true);  
+    }
+
+    // remember current page location to use in the next move
+    setLastScrollY(window.scrollY); 
+  };
+
+  useEffect(() => {
+    window.addEventListener('scroll', controlNavbar);
+    // cleanup function
+    return () => {
+       window.removeEventListener('scroll', controlNavbar);
+    };
+  }, [lastScrollY]);
+
+    
+    console.log(show)
   return (
-    <>
-    <section className='rounded-[25px] bg-[#fbffe9] text-black h-[calc(100dvh-32px)] m-4 p-5 relative'>
-      <nav className="flex justify-between">
-        <Link href='/' className='font-semibold text-3xl '>I&Q</Link>
+    <nav className={`flex w-[calc(100%-36px)] justify-between items-center rounded-[25px] bg-[#fbffe9] m-4 p-5 fixed ${show?'top-0':'top-[-110px]'} z-50 border border-gray-400 transition-all duration-500 `}>
+        <Link href='/' className='font-semibold text-3xl text-black'>I&Q</Link>
         <div className="flex gap-3">
           <Link className='bg-black rounded-full pl-4 pr-3 py-3 text-sec uppercase text-[12px] font-medium flex gap-2 items-center group' href=''>
             Our Services
@@ -26,17 +50,7 @@ const Hero = () => {
           </Link>
         </div>
       </nav>
-
-      <p className='w-[min(600px,100%)] mt-4'>
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Consequatur nostrum impedit unde modi, placeat magni, voluptate vel quas, soluta voluptatum laudantium autem officiis sed et rem quaerat incidunt libero officia?
-      </p>
-      
-      <h2 className='mt-auto bg-sec absolute bottom-[16px] text-5xl font-semibold p-[40px] w-[calc(100%-36px)] text-center rounded-[20px]'>
-        Lorem ipsum dolor sit amet consectetur
-      </h2>
-    </section>
-    </>
   )
 }
 
-export default Hero
+export default Navbar
