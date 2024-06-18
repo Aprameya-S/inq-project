@@ -27,7 +27,7 @@ const Navbar = () => {
   }, [lastScrollY]);
 
     
-    console.log(show)
+    // console.log(show)
   return (
     <nav className={`flex w-[calc(100%-36px)] justify-between items-center rounded-[25px] bg-[#fbffe9] m-4 p-5 fixed ${show?'top-0':'top-[-110px]'} z-50 border border-gray-400 transition-all duration-500 `}>
         <Link href='/' className='font-semibold text-3xl text-black'>I&Q</Link>

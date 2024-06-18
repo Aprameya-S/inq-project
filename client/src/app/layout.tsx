@@ -12,7 +12,7 @@ import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "INQ",
-  description: "Immutable Integrity, Infinite Access: Transforming Legal Records with Blockchain.",
+  description: "",
 };
 
 const poppins = Poppins({
