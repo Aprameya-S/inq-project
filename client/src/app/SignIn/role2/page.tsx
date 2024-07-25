@@ -1,40 +1,33 @@
 "use client"
 import { Input } from '@/components/ui/input'
 import { Label } from '@radix-ui/react-dropdown-menu'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import axios from 'axios'
 import { Button } from '@/components/ui/button'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation';
 import { toast } from 'react-toastify'
+import { AuthContext } from '@/context/AuthContext'
 
 const Page = () => {
   const [form, setForm] = useState({username:"",pass:""})
   const { push } = useRouter();
 
-  axios.interceptors.request.use(
-    config=> {
-      config.withCredentials=true
-      return config;
-    },
-    error => {
-      return Promise.reject(error)
-    }
-  )
+  const { login } = useContext(AuthContext)
 
-  const handleSubmit = (e:any) => {
+  const handleSubmit = async(e:any) => {
     e.preventDefault()
     try {
-      axios.post('http://localhost:5174/api/auth/loginRole2',form)
-      .then((res) => {
-        if(res.status===200){
-          push('/Role2')
-        }
-      })
-      .catch(err => {
-         toast.error(err.response.data)
-         throw(err)
-      }) 
+      const val = await login(form.username, form.pass, 2)
+      if(val === 1){
+        push("/Role2")
+      }else if(val === -10){
+        alert("You do not have these permissions")
+      }else if(val === -11){
+        alert("Incorect credentials")
+      }else{
+        alert("No such user exists")
+      }
     } catch (error) {
       console.error(error)
     }

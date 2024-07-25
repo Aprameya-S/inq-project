@@ -6,6 +6,7 @@ import Navigate from '@/components/Navigate';
 import Loader from '@/components/Loader';
 import DashMenu from '@/components/DashMenu';
 import { useRouter } from 'next/navigation';
+import Footer from '@/components/Footer';
 
 
 const Layout = ({
@@ -27,20 +28,20 @@ const Layout = ({
     },
   ]
 
-  const auth = async() => {
-    try {
-      const data = await axios.post(
-        "http://localhost:5174/api/auth/authAdmin",
-        {},
-        {withCredentials:true}
-      ).then((res:any) => {
-        setAuthenticated(res.data)
-        setIsLoading(false)
-      })
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  // const auth = async() => {
+  //   try {
+  //     const data = await axios.post(
+  //       "http://localhost:5174/api/auth/authAdmin",
+  //       {},
+  //       {withCredentials:true}
+  //     ).then((res:any) => {
+  //       setAuthenticated(res.data)
+  //       setIsLoading(false)
+  //     })
+  //   } catch (error) {
+  //     console.error(error)
+  //   }
+  // }
 
   const {push} = useRouter()
 
@@ -55,20 +56,28 @@ const Layout = ({
     })
   }
 
-  useEffect(() => {
-    auth()
-  },[])
+  // useEffect(() => {
+  //   auth()
+  // },[])
 
-  if(isLoading)return(<Loader/>)
+  // if(isLoading)return(<Loader/>)
 
-  return authenticated ? (
-    <div>
+  // return authenticated ? (
+  //   <div>
+  //     <DashMenu links={links} logoutFunction={handleLogout}>
+  //       {children}
+  //     </DashMenu>
+  //   </div>
+  // ) : (
+  //   <Navigate to='/SignIn/admin' replace/>
+  // )
+  return (
+    <div className="">
       <DashMenu links={links} logoutFunction={handleLogout}>
         {children}
+        <Footer />
       </DashMenu>
     </div>
-  ) : (
-    <Navigate to='/SignIn/admin' replace/>
   )
 }
 
