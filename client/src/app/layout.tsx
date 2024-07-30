@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Poppins, Montserrat, Anton } from "next/font/google";
 import "./globals.css";
 import "./index.scss"
 import { Toaster } from "@/components/ui/toaster";
@@ -11,8 +11,8 @@ import Footer from "@/components/Footer";
 
 
 export const metadata: Metadata = {
-  title: "INQ",
-  description: "",
+  title: "I&Q",
+  description: "I&Q Consultancy, headquartered in Bangalore, is a distinguished provider of third-party inspection services. Established as a partnership firm, we uphold an unwavering commitment to delivering exceptional quality and safety in every inspection.",
 };
 
 const poppins = Poppins({
@@ -20,7 +20,14 @@ const poppins = Poppins({
   display: 'swap',
   variable: '--font-poppins',
   weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900']
-}); 
+});
+
+const anton = Anton({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-custom',
+  weight: '400'
+});
 
 export default function RootLayout({
   children,
@@ -30,7 +37,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning >
 
-          <body className={`${poppins.className} bg-white dark:bg-[#0e0e10]`}>
+          <body className={`${poppins.className} bg-white text-pri dark:bg-[#0e0e10]`}>
             <Providers>
               <link rel="icon" href="/logo.svg" sizes="any" />
               <ToastContainer

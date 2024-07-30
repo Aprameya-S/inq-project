@@ -24,6 +24,7 @@ const config = {
         pri:"var(--pri)",
         sec:"var(--sec)",
         ter:"var(--ter)",
+        qua:"var(--qua)",
         ring: "hsl(var(--ring))",
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",

@@ -25,10 +25,10 @@
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
-    --pri:#fbffe9;
-    --sec:#e6ff75;
-    --ter:#829aff;
-
+    --pri:#27262b;
+    --sec:#ffffff;
+    --ter:#df001b;
+    --qua:#e3e3e3;
   }
 
   /* hsl(240, 7%, 6%) */
@@ -61,9 +61,9 @@
     @apply border-border;
   }
   body {
-    @apply text-foreground;
+    @apply text-black;
   }
   body{
-    background-color: black !important;
+    background-color: white !important;
   }
 }
